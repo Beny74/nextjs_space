@@ -1,0 +1,26 @@
+
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
+    output = "/home/ubuntu/gabi_cleaning/nextjs_space/node_modules/.prisma/client"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model QuoteRequest {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  address   String?
+  service   String
+  size      String?
+  date      String?
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("quote_requests")
+}
